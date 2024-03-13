@@ -57,7 +57,7 @@ class FileStorage:
 
     def delete(self, obj=None):
         """Deletes an object from the storage dictionary"""
-        if obj in self.__class__.__objects and obj is not None:
-            self.__class__.__objects.pop(obj)
+        if obj is not None:
+            self.__class__.__objects.pop(obj, None)
             return
         pass
