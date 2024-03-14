@@ -25,6 +25,8 @@ class BaseModel:
                 if key == 'created_at' or key == 'updated_at':
                     value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
                 if hasattr(self, key):
+                    if isinstance(value, str) and key == '__class__':
+                        value = self.__class__
                     setattr(self, key, value)
 
     def __str__(self):
