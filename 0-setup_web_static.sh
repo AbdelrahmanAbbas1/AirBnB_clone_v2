@@ -3,11 +3,11 @@
 
 # Install nginx
 install_nginx() {
-    echo "Updating package lists..."
+    # "Updating package lists..."
     sudo apt-get -y update
-    echo "Installing Nginx..."
+    # "Installing Nginx..."
     sudo apt-get -y install nginx
-    echo "Starting Nginx..."
+    # "Starting Nginx..."
     sudo service nginx restart
 }
 
@@ -27,7 +27,7 @@ creating_data() {
     if [ ! -d /data/web_static/releases/test/ ]; then
         sudo mkdir -p /data/web_static/releases/test
         sudo touch  /data/web_static/releases/test/index.html
-        echo "Hello this is just a test" | sudo tee /data/web_static/releases/test/index.html
+        echo "Hello this is just a test" | sudo tee /data/web_static/releases/test/index.html > /dev/null
     fi
     sudo chown -R ubuntu:ubuntu /data/
     if [ -L /data/web_static/current ]; then
@@ -41,7 +41,7 @@ creating_data() {
 
 # Checking if nginx is installed or not
 if nginx -v >/dev/null 2>&1; then
-    echo "Nginx is Installed"
+    # "Nginx is Installed"
     creating_data
 else
     install_nginx
