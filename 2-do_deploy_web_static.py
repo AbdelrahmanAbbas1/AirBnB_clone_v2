@@ -22,6 +22,13 @@ def do_deploy(archive_path):
     if run("sudo tar -xzvf /tmp/{} -C /data/web_static/releases/{}/".
            format(folder, name)).succeeded is False:
         return False
+    if run("sudo mv /data/web_static/releases/{}/web_static/* "
+           "/data/web_static/releases/{}".
+           format(name, name)).succeeded is False:
+        return False
+    if run("sudo rm -rf /data/web_static/releases/{}/web_static".
+           format(name)).succeeded is False:
+        return False
     if run("sudo rm -f /tmp/{}".format(folder)).succeeded is False:
         return False
     if run("sudo rm -rf /data/web_static/current").succeeded is False:
