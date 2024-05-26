@@ -14,9 +14,12 @@ def do_deploy(archive_path):
     folder = archive_path.split("/")[-1]
     name = folder.split(".")[0]
 
-    if put(arhcive_path, "/tmp/").succeeded is False:
+    if put(archive_path, "/tmp/").succeeded is False:
         return False
-    if run("sudo tar -xzvf /tmp/{} /data/web_static/releases/{}/".
+    if run("sudo mkdir -p /data/web_static/releases/{}".
+           format(name)).succeeded is False:
+        return False
+    if run("sudo tar -xzvf /tmp/{} -C /data/web_static/releases/{}/".
            format(folder, name)).succeeded is False:
         return False
     if run("sudo rm -f /tmp/{}".format(folder)).succeeded is False:
