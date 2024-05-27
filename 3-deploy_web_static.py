@@ -7,6 +7,7 @@ do_deploy = __import__("2-do_deploy_web_static").do_deploy
 
 # Variable to keep track of the function calls
 archive = None
+env.hosts = ["100.25.181.194", "54.237.49.41"]
 
 
 def deploy():
