@@ -62,3 +62,6 @@ class FileStorage:
             FileStorage.__objects.pop(obj_del, None)
             return
         pass
+
+    def close(self):
+        self.reload()
