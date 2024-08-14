@@ -13,7 +13,7 @@ def list_states():
 
 
 @app.teardown_appcontext
-def shutdown_session(exception=None):
+def teardown(exc):
     storage.close()
 
 
