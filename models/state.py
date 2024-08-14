@@ -3,7 +3,7 @@
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
-from models import storage
+import models
 
 
 class State(BaseModel, Base):
@@ -15,7 +15,7 @@ class State(BaseModel, Base):
 
     @property
     def cities(self):
-        all_states = storage.all()
+        all_states = models.storage.all()
         l_cities = []
         l_common = []
         for key in all_states:
